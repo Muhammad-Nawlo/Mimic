@@ -1,0 +1,2982 @@
+{
+	"info": {
+		"_postman_id": "1df36c6b-4273-4e4e-b9fc-c21f69224bdc",
+		"name": "Mimic",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14848848"
+	},
+	"item": [
+		{
+			"name": "clinet",
+			"item": [
+				{
+					"name": "authenticate",
+					"item": [
+						{
+							"name": "forget Pssword",
+							"item": [
+								{
+									"name": "forget password",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "email",
+													"value": "ahmed.shaiboub123@gmail.com",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/clientForgetPassword",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"clientForgetPassword"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "reset password",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "token",
+													"value": "0IvcZG",
+													"type": "text"
+												},
+												{
+													"key": "password",
+													"value": "12345678910",
+													"type": "text"
+												},
+												{
+													"key": "password_confirmation",
+													"value": "12345678910",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/clientResetPassword",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"clientResetPassword"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Challenge",
+							"item": [
+								{
+									"name": "store",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "title",
+													"value": "عملاق السباحة",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "من يستطع إنهاء قصة بطولة عملاق السباحة",
+													"type": "text"
+												},
+												{
+													"key": "category_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "end_date",
+													"value": "2022-09-29",
+													"type": "text"
+												},
+												{
+													"key": "hashtags[]",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "video_name",
+													"value": "1657819974014",
+													"type": "text"
+												},
+												{
+													"key": "videos[]",
+													"type": "file",
+													"src": "/C:/Users/aa/Desktop/New folder/1657819974014.m3u8"
+												},
+												{
+													"key": "videos[]",
+													"type": "file",
+													"src": "/C:/Users/aa/Desktop/New folder/0_1657819974014.m3u8"
+												},
+												{
+													"key": "videos[]",
+													"type": "file",
+													"src": "/C:/Users/aa/Desktop/New folder/0_1657819974014_0.ts"
+												},
+												{
+													"key": "hashtagNames[]",
+													"value": "go hhhh",
+													"type": "text"
+												},
+												{
+													"key": "hashtagNames[]",
+													"value": "go moh",
+													"type": "text"
+												},
+												{
+													"key": "thumb",
+													"type": "file",
+													"src": "/C:/Users/aa/Pictures/Camera Roll/WIN_20220418_15_06_37_Pro.jpg"
+												},
+												{
+													"key": "videos[]",
+													"type": "file",
+													"src": "/C:/Users/aa/Desktop/New folder/0_1657819974014_1.ts"
+												},
+												{
+													"key": "videos[]",
+													"type": "file",
+													"src": "/C:/Users/aa/Desktop/New folder/0_1657819974014_2.ts"
+												},
+												{
+													"key": "videos[]",
+													"type": "file",
+													"src": "/C:/Users/aa/Desktop/New folder/0_1657819974014_3.ts"
+												},
+												{
+													"key": "videos[]",
+													"type": "file",
+													"src": "/C:/Users/aa/Desktop/New folder/0_1657819974014_4.ts"
+												},
+												{
+													"key": "videos[]",
+													"type": "file",
+													"src": "/C:/Users/aa/Desktop/New folder/0_1657819974014_5.ts"
+												},
+												{
+													"key": "requests[]",
+													"value": "3",
+													"type": "text"
+												},
+												{
+													"key": "requests[]",
+													"value": "2",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Challenge/store",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Challenge",
+												"store"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "searchInChallenges",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvY2xpZW50L2F1dGhTb2NpYWwiLCJpYXQiOjE2NTAxODUyMDgsIm5iZiI6MTY1MDE4NTIwOCwianRpIjoiUjRZSlZKOHdKcFJOY0dtbiIsInN1YiI6MSwicHJ2IjoiNDFlZmI3YmFkN2Y2ZjYzMmUyNDA1YmQzYTc5M2I4YTZiZGVjNjc3NyIsInR5cGUiOiJjbGllbnQifQ.ZnHV-_WrepUZB2QNDTMDeBpOsTWjEsex8JaZmxvKxys",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "category_id[]",
+													"value": "1",
+													"description": "1",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "period",
+													"value": "1",
+													"description": "0=>week 1=>month 2=>year",
+													"type": "text"
+												},
+												{
+													"key": "client_id",
+													"value": "2",
+													"type": "text",
+													"disabled": true
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Challenge/searchInChallenges",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Challenge",
+												"searchInChallenges"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getMyChallenges",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvY2xpZW50L2F1dGhTb2NpYWwiLCJpYXQiOjE2NDc4Njc3NjAsIm5iZiI6MTY0Nzg2Nzc2MCwianRpIjoiMjVlMFB1QjZpTmZtWFR3bCIsInN1YiI6MSwicHJ2IjoiYzdlZWRiMjE4Yjg0MjJkZjQ1OGI3MzgzNTRhNmZmNGFmNDA3YTRjZiIsInR5cGUiOiJjbGllbnQifQ.marDJnQouI1XDKzmTSg9Tdx3WT_arUmaHLtQVCkZRfg",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "category_id",
+													"value": "18",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "status",
+													"value": "reject",
+													"description": "'pending','accept','reject'",
+													"type": "text",
+													"disabled": true
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Challenge/getMyChallenges",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Challenge",
+												"getMyChallenges"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "SearchByHashtagIDInCurrentChallenges",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "id",
+													"value": "6",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Challenge/SearchByHashtagIDInCurrentChallenges",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Challenge",
+												"SearchByHashtagIDInCurrentChallenges"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getCurrentChallenges",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "{{url}}/client/Challenge/getCurrentChallenges",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Challenge",
+												"getCurrentChallenges"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getCurrentChallengesVideos",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvY2xpZW50L2F1dGhTb2NpYWwiLCJpYXQiOjE2NDc4Njc3NjAsIm5iZiI6MTY0Nzg2Nzc2MCwianRpIjoiMjVlMFB1QjZpTmZtWFR3bCIsInN1YiI6MSwicHJ2IjoiYzdlZWRiMjE4Yjg0MjJkZjQ1OGI3MzgzNTRhNmZmNGFmNDA3YTRjZiIsInR5cGUiOiJjbGllbnQifQ.marDJnQouI1XDKzmTSg9Tdx3WT_arUmaHLtQVCkZRfg",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "challenge_id",
+													"value": "1",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Challenge/getCurrentChallengesVideos",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Challenge",
+												"getCurrentChallengesVideos"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getChallengesByCreaterId",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvY2xpZW50L2F1dGhTb2NpYWwiLCJpYXQiOjE2NDc4Njc3NjAsIm5iZiI6MTY0Nzg2Nzc2MCwianRpIjoiMjVlMFB1QjZpTmZtWFR3bCIsInN1YiI6MSwicHJ2IjoiYzdlZWRiMjE4Yjg0MjJkZjQ1OGI3MzgzNTRhNmZmNGFmNDA3YTRjZiIsInR5cGUiOiJjbGllbnQifQ.marDJnQouI1XDKzmTSg9Tdx3WT_arUmaHLtQVCkZRfg",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "creater_id",
+													"value": "4",
+													"type": "text",
+													"disabled": true
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Challenge/getChallengesByCreaterId",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Challenge",
+												"getChallengesByCreaterId"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getChallengeById",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3JveWFsbWF6YWQuY29tL3B1YmxpYy9taW1pYy9wdWJsaWMvY2xpZW50L2xvZ2luIiwiaWF0IjoxNjU2NDI1MDQ3LCJuYmYiOjE2NTY0MjUwNDcsImp0aSI6InBJeFc5dFBmS054VDhVbWQiLCJzdWIiOjEsInBydiI6IjQxZWZiN2JhZDdmNmY2MzJlMjQwNWJkM2E3OTNiOGE2YmRlYzY3NzciLCJ0eXBlIjoiY2xpZW50In0.3s3tORF8eyfgavCr0NQOproRH4K23rABmZPz0Q4Q_58",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "challenge_id",
+													"value": "3",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Challenge/getChallengeById",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Challenge",
+												"getChallengeById"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "joinChallenges",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3JveWFsbWF6YWQuY29tL3B1YmxpYy9taW1pYy9wdWJsaWMvY2xpZW50L2xvZ2luIiwiaWF0IjoxNjU2NDI1MDQ3LCJuYmYiOjE2NTY0MjUwNDcsImp0aSI6InBJeFc5dFBmS054VDhVbWQiLCJzdWIiOjEsInBydiI6IjQxZWZiN2JhZDdmNmY2MzJlMjQwNWJkM2E3OTNiOGE2YmRlYzY3NzciLCJ0eXBlIjoiY2xpZW50In0.3s3tORF8eyfgavCr0NQOproRH4K23rABmZPz0Q4Q_58",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "client_id",
+													"value": "1",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Challenge/joinChallenges",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Challenge",
+												"joinChallenges"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "videos",
+							"item": [
+								{
+									"name": "getMyVideos",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvY2xpZW50L2F1dGhTb2NpYWwiLCJpYXQiOjE2NDc4Njc3NjAsIm5iZiI6MTY0Nzg2Nzc2MCwianRpIjoiMjVlMFB1QjZpTmZtWFR3bCIsInN1YiI6MSwicHJ2IjoiYzdlZWRiMjE4Yjg0MjJkZjQ1OGI3MzgzNTRhNmZmNGFmNDA3YTRjZiIsInR5cGUiOiJjbGllbnQifQ.marDJnQouI1XDKzmTSg9Tdx3WT_arUmaHLtQVCkZRfg",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "status",
+													"value": "reject",
+													"description": "pending accept reject",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "category_id",
+													"value": "1",
+													"type": "text",
+													"disabled": true
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Video/getMyVideos",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Video",
+												"getMyVideos"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "store",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3JveWFsbWF6YWQuY29tL3B1YmxpYy9taW1pYy9wdWJsaWMvY2xpZW50L2F1dGhTb2NpYWwiLCJpYXQiOjE2NTI4ODU1MjAsIm5iZiI6MTY1Mjg4NTUyMCwianRpIjoiSjVrM0tPbTJpYnlrazdxaCIsInN1YiI6MSwicHJ2IjoiNDFlZmI3YmFkN2Y2ZjYzMmUyNDA1YmQzYTc5M2I4YTZiZGVjNjc3NyIsInR5cGUiOiJjbGllbnQifQ.OeGK3fEDsrE8_VgMn3PXBkUHhEE-eFSopfStBbyR_dc",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "en",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "title",
+													"value": "AaAAAa",
+													"type": "text"
+												},
+												{
+													"key": "thumb",
+													"type": "file",
+													"src": "/C:/Users/aa/Desktop/images/20200228142303-GettyImages-1087147182.jpeg"
+												},
+												{
+													"key": "challenge_id",
+													"value": "3",
+													"type": "text"
+												},
+												{
+													"key": "video_name",
+													"value": "1657819974014",
+													"type": "text"
+												},
+												{
+													"key": "videos[]",
+													"type": "file",
+													"src": "/C:/Users/aa/Desktop/New folder/1657819974014.m3u8"
+												},
+												{
+													"key": "videos[]",
+													"type": "file",
+													"src": "/C:/Users/aa/Desktop/New folder/0_1657819974014_1.ts"
+												},
+												{
+													"key": "videos[]",
+													"type": "file",
+													"src": "/C:/Users/aa/Desktop/New folder/0_1657819974014_2.ts"
+												},
+												{
+													"key": "videos[]",
+													"type": "file",
+													"src": "/C:/Users/aa/Desktop/New folder/0_1657819974014_3.ts"
+												},
+												{
+													"key": "videos[]",
+													"type": "file",
+													"src": "/C:/Users/aa/Desktop/New folder/0_1657819974014_4.ts"
+												},
+												{
+													"key": "videos[]",
+													"type": "file",
+													"src": "/C:/Users/aa/Desktop/New folder/0_1657819974014_5.ts"
+												},
+												{
+													"key": "videos[]",
+													"type": "file",
+													"src": "/C:/Users/aa/Desktop/New folder/0_1657819974014.m3u8"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Video/store",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Video",
+												"store"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "AddReason",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvY2xpZW50L1ZlcmlmeUFjY291bnQiLCJpYXQiOjE2NTI2MTM1MzUsIm5iZiI6MTY1MjYxMzUzNSwianRpIjoiNm9HM2lyM1NBYmdhbThJdiIsInN1YiI6MSwicHJ2IjoiNDFlZmI3YmFkN2Y2ZjYzMmUyNDA1YmQzYTc5M2I4YTZiZGVjNjc3NyIsInR5cGUiOiJjbGllbnQifQ.Yv-vxRdIxKJwEoaOYZiiQVK_kNfz1JcKCLJH1Ky_Suw",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "en",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "reason",
+													"value": "why my video not Publish Unitl Now",
+													"type": "text"
+												},
+												{
+													"key": "video_id",
+													"value": "2",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Video/AddReason",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Video",
+												"AddReason"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "reports",
+							"item": [
+								{
+									"name": "store",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvY2xpZW50L1ZlcmlmeUFjY291bnQiLCJpYXQiOjE2NTI2MTM1MzUsIm5iZiI6MTY1MjYxMzUzNSwianRpIjoiNm9HM2lyM1NBYmdhbThJdiIsInN1YiI6MSwicHJ2IjoiNDFlZmI3YmFkN2Y2ZjYzMmUyNDA1YmQzYTc5M2I4YTZiZGVjNjc3NyIsInR5cGUiOiJjbGllbnQifQ.Yv-vxRdIxKJwEoaOYZiiQVK_kNfz1JcKCLJH1Ky_Suw",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "en",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "text",
+													"value": "why my video not Publish Unitl Now",
+													"type": "text"
+												},
+												{
+													"key": "video_id",
+													"value": "2",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Report/store",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Report",
+												"store"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "story",
+							"item": [
+								{
+									"name": "getStories",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "status",
+													"value": "reject",
+													"description": "pending accept reject",
+													"type": "text",
+													"disabled": true
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Story/getStories",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Story",
+												"getStories"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "store",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "thumb",
+													"type": "file",
+													"src": "/C:/Users/aa/Desktop/test/images/1.jpg"
+												},
+												{
+													"key": "video_name",
+													"value": "1650881218390",
+													"type": "text"
+												},
+												{
+													"key": "videos[]",
+													"type": "file",
+													"src": "/C:/Users/aa/Desktop/test/images/1.jpg"
+												},
+												{
+													"key": "videos[]",
+													"type": "file",
+													"src": "/C:/Users/aa/Desktop/test/images/1.jpg"
+												},
+												{
+													"key": "videos[]",
+													"type": "file",
+													"src": "/C:/Users/aa/Desktop/test/images/1.jpg"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Story/store",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Story",
+												"store"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "ranks",
+							"item": [
+								{
+									"name": "getRanks",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvY2xpZW50L1ZlcmlmeUFjY291bnQiLCJpYXQiOjE2NTI2MTM1MzUsIm5iZiI6MTY1MjYxMzUzNSwianRpIjoiNm9HM2lyM1NBYmdhbThJdiIsInN1YiI6MSwicHJ2IjoiNDFlZmI3YmFkN2Y2ZjYzMmUyNDA1YmQzYTc5M2I4YTZiZGVjNjc3NyIsInR5cGUiOiJjbGllbnQifQ.Yv-vxRdIxKJwEoaOYZiiQVK_kNfz1JcKCLJH1Ky_Suw",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "status",
+													"value": "reject",
+													"description": "pending accept reject",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "category_id",
+													"value": "1",
+													"type": "text",
+													"disabled": true
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Rank/getRanks",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Rank",
+												"getRanks"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Invitation",
+							"item": [
+								{
+									"name": "store",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvY2xpZW50L1ZlcmlmeUFjY291bnQiLCJpYXQiOjE2NTI2MTM1MzUsIm5iZiI6MTY1MjYxMzUzNSwianRpIjoiNm9HM2lyM1NBYmdhbThJdiIsInN1YiI6MSwicHJ2IjoiNDFlZmI3YmFkN2Y2ZjYzMmUyNDA1YmQzYTc5M2I4YTZiZGVjNjc3NyIsInR5cGUiOiJjbGllbnQifQ.Yv-vxRdIxKJwEoaOYZiiQVK_kNfz1JcKCLJH1Ky_Suw",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "sender_id",
+													"value": "2",
+													"description": "pending accept reject",
+													"type": "text"
+												},
+												{
+													"key": "mac_address",
+													"value": "1df2-gsg2-56h2-45kj",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Invitation/store",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Invitation",
+												"store"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Comment",
+							"item": [
+								{
+									"name": "store",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "video_id",
+													"value": "38",
+													"type": "text"
+												},
+												{
+													"key": "body",
+													"value": "Good Challeng",
+													"type": "text"
+												},
+												{
+													"key": "mentions[]",
+													"value": "1",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "mentions[]",
+													"value": "2",
+													"type": "text",
+													"disabled": true
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Comment/store",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Comment",
+												"store"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvY2xpZW50L2F1dGhTb2NpYWwiLCJpYXQiOjE2NDc4Njc3NjAsIm5iZiI6MTY0Nzg2Nzc2MCwianRpIjoiMjVlMFB1QjZpTmZtWFR3bCIsInN1YiI6MSwicHJ2IjoiYzdlZWRiMjE4Yjg0MjJkZjQ1OGI3MzgzNTRhNmZmNGFmNDA3YTRjZiIsInR5cGUiOiJjbGllbnQifQ.marDJnQouI1XDKzmTSg9Tdx3WT_arUmaHLtQVCkZRfg",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "body",
+													"value": "Good Challeng2",
+													"type": "text"
+												},
+												{
+													"key": "mentions[]",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "mentions[]",
+													"value": "2",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "comment_id",
+													"value": "1",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Comment/update",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Comment",
+												"update"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvY2xpZW50L2F1dGhTb2NpYWwiLCJpYXQiOjE2NDc4Njc3NjAsIm5iZiI6MTY0Nzg2Nzc2MCwianRpIjoiMjVlMFB1QjZpTmZtWFR3bCIsInN1YiI6MSwicHJ2IjoiYzdlZWRiMjE4Yjg0MjJkZjQ1OGI3MzgzNTRhNmZmNGFmNDA3YTRjZiIsInR5cGUiOiJjbGllbnQifQ.marDJnQouI1XDKzmTSg9Tdx3WT_arUmaHLtQVCkZRfg",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "comment_id",
+													"value": "1",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Comment/delete",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Comment",
+												"delete"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getCommentsByVideoId",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvY2xpZW50L2F1dGhTb2NpYWwiLCJpYXQiOjE2NDc4Njc3NjAsIm5iZiI6MTY0Nzg2Nzc2MCwianRpIjoiMjVlMFB1QjZpTmZtWFR3bCIsInN1YiI6MSwicHJ2IjoiYzdlZWRiMjE4Yjg0MjJkZjQ1OGI3MzgzNTRhNmZmNGFmNDA3YTRjZiIsInR5cGUiOiJjbGllbnQifQ.marDJnQouI1XDKzmTSg9Tdx3WT_arUmaHLtQVCkZRfg",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "video_id",
+													"value": "1",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Comment/getCommentsByVideoId",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Comment",
+												"getCommentsByVideoId"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Replay",
+							"item": [
+								{
+									"name": "store",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "comment_id",
+													"value": "12",
+													"type": "text"
+												},
+												{
+													"key": "body",
+													"value": "Good Comment",
+													"type": "text"
+												},
+												{
+													"key": "mentions[]",
+													"value": "1",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "mentions[]",
+													"value": "2",
+													"type": "text",
+													"disabled": true
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Reply/store",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Reply",
+												"store"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvY2xpZW50L2F1dGhTb2NpYWwiLCJpYXQiOjE2NDc4Njc3NjAsIm5iZiI6MTY0Nzg2Nzc2MCwianRpIjoiMjVlMFB1QjZpTmZtWFR3bCIsInN1YiI6MSwicHJ2IjoiYzdlZWRiMjE4Yjg0MjJkZjQ1OGI3MzgzNTRhNmZmNGFmNDA3YTRjZiIsInR5cGUiOiJjbGllbnQifQ.marDJnQouI1XDKzmTSg9Tdx3WT_arUmaHLtQVCkZRfg",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "body",
+													"value": "Good videoppp",
+													"type": "text"
+												},
+												{
+													"key": "mentions[]",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "mentions[]",
+													"value": "2",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "replay_id",
+													"value": "4",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Reply/update",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Reply",
+												"update"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvY2xpZW50L2F1dGhTb2NpYWwiLCJpYXQiOjE2NDc4Njc3NjAsIm5iZiI6MTY0Nzg2Nzc2MCwianRpIjoiMjVlMFB1QjZpTmZtWFR3bCIsInN1YiI6MSwicHJ2IjoiYzdlZWRiMjE4Yjg0MjJkZjQ1OGI3MzgzNTRhNmZmNGFmNDA3YTRjZiIsInR5cGUiOiJjbGllbnQifQ.marDJnQouI1XDKzmTSg9Tdx3WT_arUmaHLtQVCkZRfg",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "replay_id",
+													"value": "2",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Reply/delete",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Reply",
+												"delete"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getReplysByCommentId",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvY2xpZW50L2F1dGhTb2NpYWwiLCJpYXQiOjE2NDc4Njc3NjAsIm5iZiI6MTY0Nzg2Nzc2MCwianRpIjoiMjVlMFB1QjZpTmZtWFR3bCIsInN1YiI6MSwicHJ2IjoiYzdlZWRiMjE4Yjg0MjJkZjQ1OGI3MzgzNTRhNmZmNGFmNDA3YTRjZiIsInR5cGUiOiJjbGllbnQifQ.marDJnQouI1XDKzmTSg9Tdx3WT_arUmaHLtQVCkZRfg",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "comment_id",
+													"value": "1",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Reply/getReplysByCommentId",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Reply",
+												"getReplysByCommentId"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Watchshare",
+							"item": [
+								{
+									"name": "watch",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvY2xpZW50L2F1dGhTb2NpYWwiLCJpYXQiOjE2NDc4Njc3NjAsIm5iZiI6MTY0Nzg2Nzc2MCwianRpIjoiMjVlMFB1QjZpTmZtWFR3bCIsInN1YiI6MSwicHJ2IjoiYzdlZWRiMjE4Yjg0MjJkZjQ1OGI3MzgzNTRhNmZmNGFmNDA3YTRjZiIsInR5cGUiOiJjbGllbnQifQ.marDJnQouI1XDKzmTSg9Tdx3WT_arUmaHLtQVCkZRfg",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "video_id",
+													"value": "3",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/WatchOrShare/watch",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"WatchOrShare",
+												"watch"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "watchStory",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvY2xpZW50L2F1dGhTb2NpYWwiLCJpYXQiOjE2NDc4Njc3NjAsIm5iZiI6MTY0Nzg2Nzc2MCwianRpIjoiMjVlMFB1QjZpTmZtWFR3bCIsInN1YiI6MSwicHJ2IjoiYzdlZWRiMjE4Yjg0MjJkZjQ1OGI3MzgzNTRhNmZmNGFmNDA3YTRjZiIsInR5cGUiOiJjbGllbnQifQ.marDJnQouI1XDKzmTSg9Tdx3WT_arUmaHLtQVCkZRfg",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "story_id",
+													"value": "7",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/WatchOrShare/watchStory",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"WatchOrShare",
+												"watchStory"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "share",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvY2xpZW50L2F1dGhTb2NpYWwiLCJpYXQiOjE2NDc4Njc3NjAsIm5iZiI6MTY0Nzg2Nzc2MCwianRpIjoiMjVlMFB1QjZpTmZtWFR3bCIsInN1YiI6MSwicHJ2IjoiYzdlZWRiMjE4Yjg0MjJkZjQ1OGI3MzgzNTRhNmZmNGFmNDA3YTRjZiIsInR5cGUiOiJjbGllbnQifQ.marDJnQouI1XDKzmTSg9Tdx3WT_arUmaHLtQVCkZRfg",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "challenge_id",
+													"value": "1",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/WatchOrShare/share",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"WatchOrShare",
+												"share"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Like",
+							"item": [
+								{
+									"name": "reactStory",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "story_id",
+													"value": "24",
+													"description": "nullable",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Like/reactStory",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Like",
+												"reactStory"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getReacts",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "story_id",
+													"value": "24",
+													"description": "nullable",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Like/getReacts",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Like",
+												"getReacts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "toggleLike",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "video_id",
+													"value": "3",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "comment_id",
+													"value": "5",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "replay_id",
+													"value": "1",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Like/toggleLike",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Like",
+												"toggleLike"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "favourite",
+							"item": [
+								{
+									"name": "toggleFavourite",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "challenge_id",
+													"value": "3",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Favourite/toggleFavourite",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Favourite",
+												"toggleFavourite"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getMyFavouriteChallenge",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "{{url}}/client/Favourite/getMyFavouriteChallenge",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Favourite",
+												"getMyFavouriteChallenge"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Hashtags",
+							"item": [
+								{
+									"name": "SearchHastage",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3JveWFsbWF6YWQuY29tL3B1YmxpYy9taW1pYy9wdWJsaWMvY2xpZW50L2xvZ2luIiwiaWF0IjoxNjU2NDA4ODg0LCJuYmYiOjE2NTY0MDg4ODQsImp0aSI6ImJUa3NCWFNKMzc1Tk5IS0EiLCJzdWIiOjEsInBydiI6IjQxZWZiN2JhZDdmNmY2MzJlMjQwNWJkM2E3OTNiOGE2YmRlYzY3NzciLCJ0eXBlIjoiY2xpZW50In0.wvtrhcGCvcWUFHKsqyiMwiAft2bkAZf4v0uR98za9o4",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "title",
+													"value": "shico1",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "ids[]",
+													"value": "2",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "ids[]",
+													"value": "1",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "category_id",
+													"value": "1",
+													"type": "text",
+													"disabled": true
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Hashtag/SearchHastage",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Hashtag",
+												"SearchHastage"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "addHastage",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvY2xpZW50L2xvZ2luIiwiaWF0IjoxNjUyNjE2MzQ3LCJuYmYiOjE2NTI2MTYzNDcsImp0aSI6IjBxcEN5YUxKaGFVekpJUmIiLCJzdWIiOjEsInBydiI6IjQxZWZiN2JhZDdmNmY2MzJlMjQwNWJkM2E3OTNiOGE2YmRlYzY3NzciLCJ0eXBlIjoiY2xpZW50In0.AI5gjYlMwzQVaZDkpirPdJdGr2r9jpyIR7m3JywMmEA",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "title",
+													"value": "shico1",
+													"type": "text"
+												},
+												{
+													"key": "category_id",
+													"value": "1",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/Hashtag/addHastage",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"Hashtag",
+												"addHastage"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Search clients",
+							"item": [
+								{
+									"name": "searchClients",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvY2xpZW50L2F1dGhTb2NpYWwiLCJpYXQiOjE2NDc4Njc3NjAsIm5iZiI6MTY0Nzg2Nzc2MCwianRpIjoiMjVlMFB1QjZpTmZtWFR3bCIsInN1YiI6MSwicHJ2IjoiYzdlZWRiMjE4Yjg0MjJkZjQ1OGI3MzgzNTRhNmZmNGFmNDA3YTRjZiIsInR5cGUiOiJjbGllbnQifQ.marDJnQouI1XDKzmTSg9Tdx3WT_arUmaHLtQVCkZRfg",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "user_name",
+													"value": "ball",
+													"type": "text",
+													"disabled": true
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/searchClients",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"searchClients"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "notifications",
+							"item": [
+								{
+									"name": "getNotifications",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "{{url}}/client/getNotifications",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"getNotifications"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "getunReadNotificationsCount",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "{{url}}/client/getunReadNotificationsCount",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"getunReadNotificationsCount"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "read Notification",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "{{url}}/client/readNotification",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"readNotification"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "deleteNotify",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "notify_id",
+													"value": "134",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/deleteNotify",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"deleteNotify"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "changeNotifyStatus",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "{{token}}",
+												"type": "text"
+											},
+											{
+												"key": "Apipassword",
+												"value": "mimic2022",
+												"type": "text"
+											},
+											{
+												"key": "lang",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "notify_id",
+													"value": "133",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{url}}/client/changeNotifyStatus",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"client",
+												"changeNotifyStatus"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "authSocial",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Apipassword",
+										"value": "mimic2022",
+										"type": "text"
+									},
+									{
+										"key": "lang",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "user_name",
+											"value": "Ahmed",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "device_token",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "social_id",
+											"value": "107124783365576417918",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/client/authSocial",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"client",
+										"authSocial"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "registerr",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Apipassword",
+										"value": "mimic2022",
+										"type": "text"
+									},
+									{
+										"key": "lang",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "user_name",
+											"value": "ahmdshaiboub",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "Ahmed.shaiboub123@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "12345678",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "12345678",
+											"type": "text"
+										},
+										{
+											"key": "old_email",
+											"value": "Ahmed.shaibo1ub123@gmail.com",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "device_token",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/client/register",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"client",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "resendVerifiyCode",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Apipassword",
+										"value": "mimic2022",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "ahmed.shaiboub123@gmail.com",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/client/resendVerifiyCode",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"client",
+										"resendVerifiyCode"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update profile",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									},
+									{
+										"key": "Apipassword",
+										"value": "mimic2022",
+										"type": "text"
+									},
+									{
+										"key": "lang",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "user_name",
+											"value": "mahmoud",
+											"type": "text"
+										},
+										{
+											"key": "country_id",
+											"value": "8",
+											"type": "text"
+										},
+										{
+											"key": "city_id",
+											"value": "9",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/aa/Desktop/1.PNG"
+										},
+										{
+											"key": "date_of_birth",
+											"value": "2000-02-01",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/client/updateProfile",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"client",
+										"updateProfile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "verify account",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Apipassword",
+										"value": "mimic2022",
+										"type": "text"
+									},
+									{
+										"key": "lang",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "token",
+											"value": "RtfV",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/client/VerifyAccount",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"client",
+										"VerifyAccount"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Apipassword",
+										"value": "mimic2022",
+										"type": "text"
+									},
+									{
+										"key": "lang",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "shi@mozej.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "12345678",
+											"type": "text"
+										},
+										{
+											"key": "device_token",
+											"value": "dfdfdfdfd",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/client/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"client",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "logout",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvY2xpZW50L2xvZ2luIiwiaWF0IjoxNjQ3Mzc5ODQwLCJuYmYiOjE2NDczNzk4NDAsImp0aSI6ImVCQm1NRkRiM1RMbFBoU0ciLCJzdWIiOjQsInBydiI6ImM3ZWVkYjIxOGI4NDIyZGY0NThiNzM4MzU0YTZmZjRhZjQwN2E0Y2YiLCJ0eXBlIjoiY2xpZW50In0.m_gv8jBiD3-3Z2bew35euUdlonW5K1I5ArffzOUsnqY",
+										"type": "text"
+									},
+									{
+										"key": "Apipassword",
+										"value": "mimic2022",
+										"type": "text"
+									},
+									{
+										"key": "lang",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/client/logout",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"client",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get profile",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									},
+									{
+										"key": "Apipassword",
+										"value": "mimic2022",
+										"type": "text"
+									},
+									{
+										"key": "lang",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/client/getProfile",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"client",
+										"getProfile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ClientById",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									},
+									{
+										"key": "Apipassword",
+										"value": "mimic2022",
+										"type": "text"
+									},
+									{
+										"key": "lang",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "id",
+											"value": "1",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "user_name",
+											"value": "shif000",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/client/ClientById",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"client",
+										"ClientById"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "myStatistics",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvY2xpZW50L1ZlcmlmeUFjY291bnQiLCJpYXQiOjE2NTI2MTM1MzUsIm5iZiI6MTY1MjYxMzUzNSwianRpIjoiNm9HM2lyM1NBYmdhbThJdiIsInN1YiI6MSwicHJ2IjoiNDFlZmI3YmFkN2Y2ZjYzMmUyNDA1YmQzYTc5M2I4YTZiZGVjNjc3NyIsInR5cGUiOiJjbGllbnQifQ.Yv-vxRdIxKJwEoaOYZiiQVK_kNfz1JcKCLJH1Ky_Suw",
+										"type": "text"
+									},
+									{
+										"key": "Apipassword",
+										"value": "mimic2022",
+										"type": "text"
+									},
+									{
+										"key": "lang",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/client/myStatistics",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"client",
+										"myStatistics"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addYouFavouriteCategory",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{token}}",
+										"type": "text"
+									},
+									{
+										"key": "Apipassword",
+										"value": "mimic2022",
+										"type": "text"
+									},
+									{
+										"key": "lang",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "cateories_ids[]",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "cateories_ids[]",
+											"value": "2",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/client/addYouFavouriteCategory",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"client",
+										"addYouFavouriteCategory"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "change Password",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3JveWFsbWF6YWQuY29tL3B1YmxpYy9taW1pYy9wdWJsaWMvY2xpZW50L2xvZ2luIiwiaWF0IjoxNjQ4MDM3OTk0LCJuYmYiOjE2NDgwMzc5OTQsImp0aSI6ImRNeGtra2doTGJJZ3Q0ZW4iLCJzdWIiOjUsInBydiI6IjQxZWZiN2JhZDdmNmY2MzJlMjQwNWJkM2E3OTNiOGE2YmRlYzY3NzciLCJ0eXBlIjoiY2xpZW50In0.ZylqIvEOBf-IuR1J-0GLdJpHQhWDupKhAy-kh470FEw",
+										"type": "text"
+									},
+									{
+										"key": "Apipassword",
+										"value": "mimic2022",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "oldPassword",
+											"value": "12345678",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456789",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "123456789",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/client/clientChangPassword",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"client",
+										"clientChangPassword"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "General Apis",
+			"item": [
+				{
+					"name": "getAllCategories",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Apipassword",
+								"value": "mimic2022",
+								"type": "text"
+							},
+							{
+								"key": "lang",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/guest/getAllCategories",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"guest",
+								"getAllCategories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Countries",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Apipassword",
+								"value": "mimic2022",
+								"type": "text"
+							},
+							{
+								"key": "lang",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Apipassword",
+									"value": "1795S",
+									"type": "text"
+								},
+								{
+									"key": "lang",
+									"value": "en",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/guest/getAllCountries",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"guest",
+								"getAllCountries"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Guest",
+			"item": []
+		}
+	]
+}

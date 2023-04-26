@@ -1,0 +1,17 @@
+1-Apache 2.4.*
+2-PHP ^7.2.5|^8.0 
+3-ffmpeg package  
+4-cpanel
+There are two type Of Hosting Server
+1-https://aws.amazon.com/lightsail/pricing/
+	$80 USD/mo
+	16 GB Memory
+	4 Core Processor
+	320 GB SSD Disk
+	6 TB Transfer*
+2-https://www.hostinger.com/pricing
+	$77.99 USD/mo
+	8 Cores
+	16 GB Memory
+	250 GB SSD Disk
+	12 TB Transfer*
