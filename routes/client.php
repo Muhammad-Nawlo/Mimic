@@ -46,6 +46,8 @@ Route::group(['middleware' => ['authGuest', 'throttle:30,1']], function () {
         Route::get('getClients', [ClientController::class, 'index']);
         //start challenge
         Route::group(['prefix' => 'Challenge'], function () {
+
+            Route::get('/', 'ChallengeController@index');
             Route::post('store', 'ChallengeController@CreateChallenge');
             Route::get('getCurrentChallenges', 'ChallengeController@getCurrentChallenges');
             Route::post('searchInChallenges', 'ChallengeController@searchInChallenges');

@@ -17,7 +17,7 @@ class CreateReportsTable extends Migration
             $table->id();
             $table->string('text');
             $table->foreignId('client_id')->constrained('clients')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('video_id')->constrained('videos')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('video_id')->nullable()->constrained('videos')->onDelete('cascade')->onUpdate('cascade');
             $table->string('status')->default('new')->comment('new confirmed');
             $table->timestamps();
         });

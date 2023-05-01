@@ -20,7 +20,7 @@ class CreateChallengesTable extends Migration
             $table->date('end_date');
             $table->string('status')->default('pending')->comment("pending accept reject close");
             $table->foreignId('creater_id')->constrained('clients')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('category_id')->nullable()->constrained('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->string('hashtags')->nullable();
             $table->string('requests')->nullable();
             $table->boolean('feature')->default(false)->comment('false=>not feature true=>feature');

@@ -23,138 +23,156 @@ use Intervention\Image\ImageManagerStatic as Image;
 class ChallengeController extends Controller
 {
     use AiModelTrait, RankTrait, NotificationTrait;
+
+    public function index(Request $request)
+    {
+        try {
+            if (!auth('client')->user()) {
+                return response()->json([
+                    'status' => false,
+                    'message' => __('site.user_not_found'),
+                ], 404);
+            }
+        } catch (TokenExpiredException $e) {
+            return response()->json([
+                'status' => false,
+                'message' => __('site.token_expired'),
+            ], 404);
+        } catch (TokenInvalidException $e) {
+            return response()->json([
+                'status' => false,
+                'message' => __('site.token_invalid'),
+            ], 404);
+        } catch (JWTException $e) {
+
+            return response()->json([
+                'status' => false,
+                'message' => __('site.token_absent'),
+            ], 404);
+        }
+        return response()->json([
+            'status' => true,
+            'challenges' => ChallengeResource::collection(Challenge::query()->get())]);
+    }
+
     public function CreateChallenge(Request $request)
     {
         try {
             if (!$client = auth('client')->user()) {
                 return response()->json([
-                    'status'  => false,
+                    'status' => false,
                     'message' => __('site.user_not_found'),
                 ], 404);
             }
         } catch (TokenExpiredException $e) {
 
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.token_expired'),
             ], 404);
         } catch (TokenInvalidException $e) {
 
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.token_invalid'),
             ], 404);
         } catch (JWTException $e) {
 
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.token_absent'),
             ], 404);
         }
 
         $validator = Validator::make($request->all(), [
-            'title'          => 'required|string| max:50 | min:1',
-            'description'     => 'nullable|string|max:1000',
-            'category_id'    => 'required|numeric|exists:categories,id',
-            'end_date'       => 'required|date|date_format:Y-m-d|after_or_equal:tody',
-            'videos'         => 'required|array',
-            'videos.*'       => 'file|max:40000',
-            'video_name'     => 'required|string| max:50 | min:1',
-            'hashtags'       => 'nullable | array',
-            'hashtags.*'     => 'exists:hashtags,id',
-            'requests'       => 'nullable | array',
-            'requests.*'     => 'exists:clients,id',
-            'hashtagNames'   => 'nullable | array',
-            'hashtagNames.*' => 'string|min:1|max:100',
-            'thumb'          => 'nullable |mimes:jpg,png,jpeg,gif',
+            'title' => 'required|string|max:50',
+            'video' => 'file|max:40000',
+            'thumb' => 'nullable|mimes:jpg,png,jpeg,gif',
+            'end_date' => 'required|date|date_format:Y-m-d|after_or_equal:tody',
+            'interestings' => 'nullable|array',
+            'interestings.*' => [
+                Rule::requiredIf(function () use ($request) {
+                    return $request->interestings !== null;
+                }), Rule::exists('interestings', 'id')
+            ],
+            'mentions' => 'nullable|array',
+            'mentions.*' => [Rule::requiredIf(function () use ($request) {
+                return $request->mentions !== null;
+            }), Rule::exists('clients', 'id')]
         ]);
+
         if ($validator->fails()) {
             return response()->json([
                 'status' => false,
                 'message' => $validator->errors(),
             ]);
         }
-        $arr = array();
-        if ($request->videos != null) {
-            foreach ($request->videos as $video) {
-                $filename = $video->getClientOriginalName();
-                $video->move(public_path('/videos'), $filename);
-                array_push($arr, $filename);
-            }
-        }
-        //   $result=$this->CheckVideo(asset('videos/'.$request->video_name.'.m3u8'));
-        //   if($result != null) {
-        //       return response()->json([
-        //         'status'        =>false,
-        //         'reject_reason' =>$result,
-        //       ]);
-        //   }
 
-        // $this->dispatch(new VideoProcssingJob($filename,$filename1));
-
-
-        $arrOfHashtages = $this->handleHashtages($request->hashtagNames, $request->hashtags, $request->category_id);
+        $filename = $request->video->getClientOriginalName();
+        $request->video->move(public_path('/videos'), $filename);
 
         $challenge = Challenge::create([
-            'title'          => $request->title,
-            'category_id'    => $request->category_id,
-            'description'    => $request->description,
-            'creater_id'     => $client->id,
-            'end_date'       => $request->end_date,
-            'status'         => 'accept',
-            'requests'       => $request->requests != null ? json_encode($request->requests) : null,
-            'hashtags'       => $arrOfHashtages != null ? json_encode($arrOfHashtages) : null,
+            'title' => $request->title,
+            'description' => $request->description,
+            'creater_id' => $client->id,
+            'status' => 'accept',
+            'end_date' => $request->end_date,
+            'category_id' => $request->category_id,
         ]);
-        $video = Video::create([
-            'title'         => $request->title,
-            'video'         => $request->video_name . '.m3u8',
-            'client_id'     => $client->id,
-            'challenge_id'  => $challenge->id,
-            'category_id'   => $request->category_id,
-            'videos'        => json_encode($arr),
-            'status'        => 'accept',
-            'thumb'         => $request->thumb != null ? $this->uploadImage($request->thumb, 'videos') : null,
-        ]);
-        $this->ChallengeNum($client);
-        $this->sendRequestNotify($challenge, $video, $request->requests);
+        $video = [
+            'title' => $request->title,
+            'video' => $filename,
+            'client_id' => $client->id,
+            'challenge_id' => $challenge->id,
+            'status' => 'accept',
+            'thumb' => $request->thumb != null ? $this->uploadImage($request->thumb, 'videos') : null
+        ];
+        $video = $challenge->videos()->create($video);
 
-        return response()->json([
-            'status'    => true,
-            'accept_challenge' => new AcceptChallengeResource($challenge),
-        ]);
+        //save interesting for a video
+        $video->interestings()->sync($request->interestings ?? []);
+
+        //save mentions
+        $video->clients()->sync($request->mentions ?? []);
+
+        $this->ChallengeNum($client);
+
+        return response()->json(['status' => true,
+            'challenge' => new ChallengeResource($challenge)]);
     }
 
 
-    public function getChallengesByCreaterId(Request $request)
+    public
+    function getChallengesByCreaterId(Request $request)
     {
         try {
             if (!$client = auth('client')->user()) {
                 return response()->json([
-                    'status'  => false,
+                    'status' => false,
                     'message' => __('site.user_not_found'),
                 ], 200);
             }
         } catch (TokenExpiredException $e) {
 
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.token_expired'),
             ], 200);
         } catch (TokenInvalidException $e) {
 
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.token_invalid'),
             ], 200);
         } catch (JWTException $e) {
 
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.token_absent'),
             ], 200);
         }
         $validator = Validator::make($request->all(), [
-            'creater_id'    => 'required|exists:clients,id',
+            'creater_id' => 'required|exists:clients,id',
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -166,41 +184,42 @@ class ChallengeController extends Controller
         $challengs = Challenge::with(['category', 'client'])->whereNotIn('status', ['pending', 'reject'])->where('creater_id', $creater_id)->paginate(12);
         if ($challengs->count() <= 0) {
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.Not_found'),
             ], 200);
         }
         return response()->json([
-            'status'    => true,
+            'status' => true,
             'challenge' => ChallengeResource::collection($challengs)->response()->getData(true),
         ]);
     }
 
-    public function getCurrentChallenges()
+    public
+    function getCurrentChallenges()
     {
         try {
             if (!$client = auth('client')->user()) {
                 return response()->json([
-                    'status'  => false,
+                    'status' => false,
                     'message' => __('site.user_not_found'),
                 ], 200);
             }
         } catch (TokenExpiredException $e) {
 
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.token_expired'),
             ], 200);
         } catch (TokenInvalidException $e) {
 
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.token_invalid'),
             ], 200);
         } catch (JWTException $e) {
 
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.token_absent'),
             ], 200);
         }
@@ -212,46 +231,47 @@ class ChallengeController extends Controller
         }
         if ($challengs->count() <= 0) {
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.Not_found'),
             ], 200);
         }
         return response()->json([
-            'status'    => true,
+            'status' => true,
             'accept_challenge' => AcceptChallengeResource::collection($challengs)->response()->getData(true),
         ]);
     }
 
-    public function getChallengeById(Request $request)
+    public
+    function getChallengeById(Request $request)
     {
         try {
             if (!$client = auth('client')->user()) {
                 return response()->json([
-                    'status'  => false,
+                    'status' => false,
                     'message' => __('site.user_not_found'),
                 ], 200);
             }
         } catch (TokenExpiredException $e) {
 
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.token_expired'),
             ], 200);
         } catch (TokenInvalidException $e) {
 
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.token_invalid'),
             ], 200);
         } catch (JWTException $e) {
 
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.token_absent'),
             ], 200);
         }
         $validator = Validator::make($request->all(), [
-            'challenge_id'    => 'required|exists:challenges,id',
+            'challenge_id' => 'required|exists:challenges,id',
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -264,47 +284,48 @@ class ChallengeController extends Controller
 
         if (empty($challenge)) {
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.Not_found'),
             ], 200);
         }
         return response()->json([
-            'status'    => true,
+            'status' => true,
             'accept_challenge' => new AcceptChallengeResource($challenge),
         ]);
     }
 
-    public function getCurrentChallengesVideos(Request $request)
+    public
+    function getCurrentChallengesVideos(Request $request)
     {
         try {
             if (!$client = auth('client')->user()) {
                 return response()->json([
-                    'status'  => false,
+                    'status' => false,
                     'message' => __('site.user_not_found'),
                 ], 200);
             }
         } catch (TokenExpiredException $e) {
 
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.token_expired'),
             ], 200);
         } catch (TokenInvalidException $e) {
 
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.token_invalid'),
             ], 200);
         } catch (JWTException $e) {
 
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.token_absent'),
             ], 200);
         }
 
         $validator = Validator::make($request->all(), [
-            'challenge_id'    => 'required|exists:challenges,id',
+            'challenge_id' => 'required|exists:challenges,id',
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -315,49 +336,50 @@ class ChallengeController extends Controller
         $videos = Video::with(['client'])->where('status', 'accept')->where('challenge_id', $request->challenge_id)->paginate(12);
         if ($videos->count() <= 0) {
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.Not_found'),
             ], 200);
         }
         return response()->json([
-            'status'    => true,
+            'status' => true,
             'video' => VideoResource::collection($videos)->response()->getData(true),
         ]);
     }
 
-    public function searchInChallenges(Request $request)
+    public
+    function searchInChallenges(Request $request)
     {
         try {
             if (!$client = auth('client')->user()) {
                 return response()->json([
-                    'status'  => false,
+                    'status' => false,
                     'message' => __('site.user_not_found'),
                 ], 200);
             }
         } catch (TokenExpiredException $e) {
 
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.token_expired'),
             ], 200);
         } catch (TokenInvalidException $e) {
 
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.token_invalid'),
             ], 200);
         } catch (JWTException $e) {
 
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.token_absent'),
             ], 200);
         }
         $validator = Validator::make($request->all(), [
-            'category_id'   => 'nullable|array',
+            'category_id' => 'nullable|array',
             'category_id.*' => 'exists:categories,id',
-            'period'        => ['nullable', Rule::in(0, 1, 2)],
-            'client_id'     => 'nullable|exists:clients,id',
+            'period' => ['nullable', Rule::in(0, 1, 2)],
+            'client_id' => 'nullable|exists:clients,id',
 
         ]);
         if ($validator->fails()) {
@@ -393,47 +415,48 @@ class ChallengeController extends Controller
 
         if ($challengs->count() <= 0) {
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.Not_found'),
             ], 200);
         }
         return response()->json([
-            'status'    => true,
+            'status' => true,
             'accept_challenge' => AcceptChallengeResource::collection($challengs)->response()->getData(true),
         ], 200);
     }
 
-    public function getMyChallenges(Request $request)
+    public
+    function getMyChallenges(Request $request)
     {
         try {
             if (!$client = auth('client')->user()) {
                 return response()->json([
-                    'status'  => false,
+                    'status' => false,
                     'message' => __('site.user_not_found'),
                 ], 200);
             }
         } catch (TokenExpiredException $e) {
 
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.token_expired'),
             ], 200);
         } catch (TokenInvalidException $e) {
 
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.token_invalid'),
             ], 200);
         } catch (JWTException $e) {
 
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.token_absent'),
             ], 200);
         }
         $validator = Validator::make($request->all(), [
-            'category_id'   => ['nullable', 'exists:categories,id'],
-            'status'        => ['nullable', Rule::in('pending', 'accept', 'reject', 'close')],
+            'category_id' => ['nullable', 'exists:categories,id'],
+            'status' => ['nullable', Rule::in('pending', 'accept', 'reject', 'close')],
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -448,46 +471,47 @@ class ChallengeController extends Controller
         })->paginate(12);
         if ($challengs->count() <= 0) {
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.Not_found'),
             ], 200);
         }
         return response()->json([
-            'status'    => true,
+            'status' => true,
             'challenge' => ChallengeResource::collection($challengs)->response()->getData(true),
         ]);
     }
 
-    public function SearchByHashtagIDInCurrentChallenges(Request $request)
+    public
+    function SearchByHashtagIDInCurrentChallenges(Request $request)
     {
         try {
             if (!$client = auth('client')->user()) {
                 return response()->json([
-                    'status'  => false,
+                    'status' => false,
                     'message' => __('site.user_not_found'),
                 ], 200);
             }
         } catch (TokenExpiredException $e) {
 
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.token_expired'),
             ], 200);
         } catch (TokenInvalidException $e) {
 
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.token_invalid'),
             ], 200);
         } catch (JWTException $e) {
 
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.token_absent'),
             ], 200);
         }
         $validator = Validator::make($request->all(), [
-            'id'             => 'required | exists:hashtags,id',
+            'id' => 'required | exists:hashtags,id',
         ]);
 
         if ($validator->fails()) {
@@ -503,31 +527,33 @@ class ChallengeController extends Controller
         }
         if ($challengs->count() <= 0) {
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.Not_found'),
             ], 200);
         }
         return response()->json([
-            'status'    => true,
+            'status' => true,
             'accept_challenge' => AcceptChallengeResource::collection($challengs)->response()->getData(true),
         ]);
     }
 
-    protected function uploadImage($image, $path)
+    protected
+    function uploadImage($image, $path)
     {
         $imageName = $image->hashName();
         Image::make($image)->resize(360, 270)->save(public_path($path . '/' . $imageName));
         return $imageName;
     }
 
-    public function handleHashtages($hashNames, $hashIDs, $catid)
+    public
+    function handleHashtages($hashNames, $hashIDs, $catid)
     {
         $arr = array();
         if ($hashNames != null) {
             foreach ($hashNames as $hashName) {
                 $hash = Hashtag::create([
-                    'title'         => $hashName,
-                    'category_id'   => $catid,
+                    'title' => $hashName,
+                    'category_id' => $catid,
                 ]);
                 array_push($arr, $hash->id);
             }
@@ -538,61 +564,66 @@ class ChallengeController extends Controller
         return $arr;
     }
 
-    public function joinChallenges(Request $request)
+    public
+    function joinChallenges(Request $request)
     {
         try {
             if (!$client = auth('client')->user()) {
                 return response()->json([
-                    'status'  => false,
+                    'status' => false,
                     'message' => __('site.user_not_found'),
-                ], 200);
+                ], 404);
             }
         } catch (TokenExpiredException $e) {
 
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.token_expired'),
-            ], 200);
+            ], 404);
         } catch (TokenInvalidException $e) {
 
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.token_invalid'),
-            ], 200);
+            ], 404);
         } catch (JWTException $e) {
 
             return response()->json([
-                'status'  => false,
+                'status' => false,
                 'message' => __('site.token_absent'),
-            ], 200);
+            ], 404);
         }
+
         $validator = Validator::make($request->all(), [
-            'client_id'   => ['nullable', 'exists:categories,id'],
+            'title' => 'required|string|max :50',
+            'video' => 'file|max:40000',
+            'thumb' => 'nullable|mimes:jpg,png,jpeg,gif',
+            'challenge_id' => 'required|exists:challenges,id',
         ]);
+
         if ($validator->fails()) {
             return response()->json([
                 'status' => false,
                 'message' => $validator->errors(),
             ]);
         }
-        $chaIds = Video::where('client_id', $request->client_id)->pluck('challenge_id') ?? [];
-        if (count($chaIds) < 0) {
-            return response()->json([
-                'status'  => false,
-                'message' => __('site.Not_found'),
-            ], 200);
-        }
+        $filename = $request->video->getClientOriginalName();
+        $request->video->move(public_path('/videos'), $filename);
 
-        $challengs = Challenge::with(['category', 'client'])->where('creater_id', '!=', $request->client_id)->whereIn('id', $chaIds)->paginate(12);
-        if ($challengs->count() <= 0) {
-            return response()->json([
-                'status'  => false,
-                'message' => __('site.Not_found'),
-            ], 200);
-        }
+        $video = Video::create([
+            'title' => $request->title,
+            'video' => $filename,
+            'challenge_id' => $request->challenge_id,
+            'client_id' => $client->id,
+            'status' => 'accept',
+            'thumb' => $request->thumb != null ? $this->uploadImage($request->thumb, 'videos') : null,
+        ]);
+
+
+        $this->VideoNum($client);
         return response()->json([
-            'status'    => true,
-            'challenge' => ChallengeResource::collection($challengs)->response()->getData(true),
+            'status' => true,
+            'challenge' => new ChallengeResource($video->challenge),
         ]);
     }
 }
