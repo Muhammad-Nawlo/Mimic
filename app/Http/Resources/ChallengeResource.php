@@ -24,7 +24,6 @@ class ChallengeResource extends JsonResource
         return
             [
                 'id' => $this->id,
-                'title' => $this->title,
                 'description' => $this->description,
                 'end_date' => $this->end_date,
                 'creator' => $this->creater_id != null ? new ClientResource($this->client) : null,
