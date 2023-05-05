@@ -85,7 +85,6 @@ class ChallengeController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'title' => 'required|string|max:50',
             'video' => 'file|max:40000',
             'thumb' => 'nullable|mimes:jpg,png,jpeg,gif',
             'end_date' => 'required|date|date_format:Y-m-d|after_or_equal:tody',
@@ -112,7 +111,6 @@ class ChallengeController extends Controller
         $request->video->move(public_path('/videos'), $filename);
 
         $challenge = Challenge::create([
-            'title' => $request->title,
             'description' => $request->description,
             'creater_id' => $client->id,
             'status' => 'accept',
@@ -120,7 +118,6 @@ class ChallengeController extends Controller
             'category_id' => $request->category_id,
         ]);
         $video = [
-            'title' => $request->title,
             'video' => $filename,
             'client_id' => $client->id,
             'challenge_id' => $challenge->id,

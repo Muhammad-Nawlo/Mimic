@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Client;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CommentResource;
+use App\Models\Challenge;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
@@ -45,7 +46,7 @@ class CommentController extends Controller
             ], 200);
         }
         $validator = Validator::make($request->all(), [
-            'video_id'          => 'required|exists:videos,id',
+            'challenge_id'          => 'required|exists:challenges,id',
             'mentions'            => 'nullable|array',
             'mentions.*'        => 'exists:clients,id',
             'body'              => 'required|string|min:1|max:600',
@@ -63,14 +64,14 @@ class CommentController extends Controller
         $comment = Comment::create([
             'body'          => $request->body,
             'client_id'     => $client->id,
-            'video_id'      => $request->video_id,
+            'challenge_id'      => $request->challenge_id,
             'mentions'      => $mentions,
         ]);
 
         // Start Notification
-        $video = Video::find($request->video_id);
-        if ($video->client_id != $client->id) {
-            $this->sendNotification('Mimic', 'Mimic', ' علق على الفديو الخاص بك' . $client->user_name, $client->user_name . ' Comment Your Video', $client->id, $video->client_id, $video->challenge_id, $video->id, $comment->id, null, 'comment');
+        $challenge = Challenge::find($request->challenge_id);
+        if ($challenge->client_id != $client->id) {
+            $this->sendNotification('Mimic', 'Mimic', ' علق على الفديو الخاص بك' . $client->user_name, $client->user_name . ' Comment Your Video', $client->id, $challenge->creater_id, $challenge->id, $challenge->videos()->first()->id, $comment->id, null, 'comment');
         }
         //End Notification
         return response()->json([
@@ -191,7 +192,7 @@ class CommentController extends Controller
             'status'    => true,
         ], 200);
     }
-    public function getCommentsByVideoId(Request $request)
+    public function getCommentsByChallengeId(Request $request)
     {
         try {
             if (!$client = auth('client')->user()) {
@@ -221,7 +222,8 @@ class CommentController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'video_id'        => 'required|exists:videos,id',
+            'challenge_id'          => 'required|exists:challenges,id',
+
         ]);
         if ($validator->fails()) {
             return response()->json([
@@ -229,7 +231,7 @@ class CommentController extends Controller
                 'message' => $validator->errors(),
             ]);
         }
-        $comments = Comment::where('video_id', $request->video_id)->paginate(12);
+        $comments = Comment::where('challenge_id', $request->challenge_id)->paginate(12);
 
         if ($comments->count() < 0) {
             return response()->json([

@@ -90,7 +90,7 @@ Route::group(['middleware' => ['authGuest', 'throttle:30,1']], function () {
             Route::post('store', 'CommentController@store');
             Route::post('update', 'CommentController@update');
             Route::post('delete', 'CommentController@delete');
-            Route::post('getCommentsByVideoId', 'CommentController@getCommentsByVideoId');
+            Route::post('getCommentsByChallengeId', 'CommentController@getCommentsByChallengeId');
         });
         //end comment
 
