@@ -15,7 +15,6 @@ class CreateChallengesTable extends Migration
     {
         Schema::create('challenges', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
             $table->string('description')->nullable();
             $table->date('end_date');
             $table->string('status')->default('pending')->comment("pending accept reject close");

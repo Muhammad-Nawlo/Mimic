@@ -32,6 +32,7 @@ class ChallengeResource extends JsonResource
                 'share_count' => $this->shar_count,
                 'is_owner_of_challenge' => ((!empty(auth('client')->user()->id)) && ($this->clinet_id == auth('client')->user()->id)) ? true : false,
                 'video' => VideoResource::collection($this->videos) ?? null,
+                'interestings' => InterestingResource::collection($this->interestings),
                 'is_owner_of_video' => !empty(auth('client')->user()->id) ? (!empty($this->videos()->where('client_id', auth('client')->user()->id)->first()) ? true : false) : false,
                 'members' => count($this->who_join) > 0 ? ClientCustomResource::collection(Client::whereIn('id', $this->who_join)->get()) : null,
                 'comment_count' => $this->comment_count,

@@ -26,7 +26,8 @@
         "santigarcor/laratrust": "5.2.*",
         "sightengine/client-php": "*",
         "spatie/laravel-newsletter": "^4.8",
-        "tymon/jwt-auth": "^1.0"
+        "tymon/jwt-auth": "^1.0",
+      "ext-pdo": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

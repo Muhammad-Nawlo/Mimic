@@ -126,6 +126,7 @@ class ChallengeController extends Controller
         ];
         $video = $challenge->videos()->create($video);
 
+        $challenge->interestings()->sync($request->interestings ?? []);
         //save interesting for a video
         $video->interestings()->sync($request->interestings ?? []);
 
@@ -373,8 +374,8 @@ class ChallengeController extends Controller
             ], 200);
         }
         $validator = Validator::make($request->all(), [
-            'category_id' => 'nullable|array',
-            'category_id.*' => 'exists:categories,id',
+            'interesting_id' => 'nullable|array',
+            'interesting_id.*' => 'exists:interestings,id',
             'period' => ['nullable', Rule::in(0, 1, 2)],
             'client_id' => 'nullable|exists:clients,id',
 
@@ -387,8 +388,9 @@ class ChallengeController extends Controller
         }
 
         $categories = json_decode($client->cateories_ids);
-        if ($request->category_id != null) {
-            $categories = $request->category_id;
+        $interestings =[];
+        if ($request->interesting_id != null) {
+            $interestings = $request->interesting_id;
         }
         if ($request->period != null) {
             if ($request->period == '0') {
@@ -401,14 +403,15 @@ class ChallengeController extends Controller
                 $request->period = date('Y-01-01');
             }
         }
-        $challengs = Challenge::with(['category', 'client'])->whereIn('status', ['accept', 'close'])
+        $challengs = Challenge::with(['category', 'interestings', 'client'])->whereIn('status', ['accept', 'close'])
             ->when($request->period, function ($q) use ($request) {
                 $q->whereDate('created_at', '>=', $request->period);
             })->when($request->client_id, function ($q) use ($request) {
                 $q->where('creater_id', $request->client_id);
-            })->whereIn('category_id', $categories)
-            ->latest()
-            ->paginate(12);
+            })->whereHas('interestings',function($q)use ($interestings){
+                $q->whereIn('interestings.id',$interestings);
+            })
+            ->latest()->paginate(12);
 
         if ($challengs->count() <= 0) {
             return response()->json([

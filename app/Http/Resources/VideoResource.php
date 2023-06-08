@@ -29,7 +29,6 @@ class VideoResource extends JsonResource
                 'thumb_path' => $this->thumb_path,
                 'is_owner_video' => ((!empty(auth('client')->user()->id)) && ($this->clinet_id == auth('client')->user()->id)) ? true : false,
                 'is_liked' => (!empty(auth('client')->user()->id)) && (!empty(Like::where('video_id', $this->id)->where('client_id', auth('client')->user()->id)->first())) ? true : false,
-                'comment_num' => $this->comment_num ?? 0,
                 'like_num' => $this->like_num ?? 0,
                 'watch_num' => $this->watch_num ?? 0,
                 'reason' => ReasonResource::collection($this->reasons) ?? null,

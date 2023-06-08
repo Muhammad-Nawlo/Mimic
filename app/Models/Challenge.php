@@ -12,6 +12,8 @@ class Challenge extends Model
     protected $guarded = [];
     protected $appended = ['video_num', 'pending_video', 'accept_video', 'reject_video', 'shar_count', 'comment_count', 'like_count', 'who_join', 'video_thumb', 'watch_count'];
 
+    protected $with = ['interestings'];
+
     public function client()
     {
         return $this->belongsTo('App\Models\Client', 'creater_id');
@@ -93,5 +95,21 @@ class Challenge extends Model
             }
         }
         return $watchCount;
+    }
+
+    //comments and its count
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment');
+    }
+
+    public function getCommentCountAttribute()
+    {
+        return $this->comments()->count() ?? 0;
+    }
+
+    public function interestings()
+    {
+        return $this->morphToMany(Interesting::class, 'interestingable');
     }
 }

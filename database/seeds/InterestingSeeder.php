@@ -12,12 +12,13 @@ class InterestingSeeder extends Seeder
      */
     public function run()
     {
-        Interesting::create(['name' => '❤️sport']);
-        Interesting::create(['name' => '❤️entertainment']);
-        Interesting::create(['name' => '❤️movies']);
-        Interesting::create(['name' => '❤️series']);
-        Interesting::create(['name' => '❤️reading']);
-        Interesting::create(['name' => '❤️drawing']);
-        Interesting::create(['name' => '❤️music']);
+        Interesting::create(['name' => '⚽ Football']);
+        Interesting::create(['name' => '🏀 Basketball']);
+        Interesting::create(['name' => '🧘 Yoga']);
+        Interesting::create(['name' => '🏊 Swimming']);
+        Interesting::create(['name' => '🎾 Tennis']);
+        Interesting::create(['name' => '🥋 Karate']);
+        Interesting::create(['name' => '🏓 Table tennis']);
+        Interesting::create(['name' => '❤ Boxing']);
     }
 }
